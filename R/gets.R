@@ -15,8 +15,8 @@ getUserPlayslists <- function(userID) {
   return(df)
 }
 
-#' Bilds the dataframe.
-#'  Takes the initial query as an argument
+#' Builds the dataframe.
+#' Takes the initial query as an argument
 #' @param query
 
 buildPlaylistDF <- function(query) {
@@ -58,15 +58,21 @@ buildPlaylistDF <- function(query) {
 #' @export
 getPlaylistTracks <- function(playlists) {
   theList <- vector("list", length(playlists[, 1]))
-
+  message("Downloading...")
   for (i in 1:length(theList)) {
     traURL <- playlists$tracks[i]
     theList[[i]] <- buildTrackDF(traURL)
   }
 
+  names(theList) <- playlists$name
+
   return(theList)
 }
 
+
+#' Hidden function. Builds the data frames that contain the tracks.
+#' @param playlistURL An URL
+#' @value A dataframe that contains the tracks for the playlist specified by playlistURL
 
 buildTrackDF <- function(playlistURL) {
   thisQ <- GETRequest(playlistURL)
