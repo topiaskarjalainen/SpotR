@@ -1,9 +1,3 @@
-#Simple helper function to make it easier to refer to the httr content function
-getContent <- function(result) {
-  return(httr::content(result))
-}
-
-
 #' Retruns the contents of a GET
 #' @param query An URL
 #' @export

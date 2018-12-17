@@ -29,5 +29,5 @@ getAccesstoken <- function() {
                  body = list(grant_type='client_credentials'),
                  encode = "form")
 
-  Sys.setenv("token" = getContent(result)$access_token)
+  Sys.setenv("token" = httr::content(result)$access_token)
 }
