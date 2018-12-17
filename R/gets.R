@@ -25,6 +25,8 @@ buildPlaylistDF <- function(query) {
   size <- thisQ[["total"]]
   df <- data.frame(name = character(size),
                    n.songs = numeric(size),
+                   id = character(size),
+                   tracks = character(size),
                    stringsAsFactors = FALSE)
   while (TRUE) {
     offs <- thisQ[["offset"]]
@@ -32,7 +34,10 @@ buildPlaylistDF <- function(query) {
 
     for (i in 1:length(thisQ[["items"]])) {
       playlist <- thisQ[["items"]][[i]]
-      line <- c(playlist$name, playlist$tracks$total)
+      line <- c(playlist$name,
+                playlist$tracks$total,
+                playlist$id,
+                playlist$tracks$href)
       df[offs+i,] <- line
     }
 
@@ -45,4 +50,59 @@ buildPlaylistDF <- function(query) {
 
   return(df)
 }
+
+
+#' Creates a list of data.frames that contain playlist tarcks.
+#' @param playlists The data.frame returned by getUserPlaylists function
+#' @value A list of data.frames that contain the tracks in the playlists
+#' @export
+getPlaylistTracks <- function(playlists) {
+  theList <- vector("list", length(playlists[, 1]))
+
+  for (i in 1:length(theList)) {
+    traURL <- playlists$tracks[i]
+    theList[[i]] <- buildTrackDF(traURL)
+  }
+
+  return(theList)
+}
+
+
+buildTrackDF <- function(playlistURL) {
+  thisQ <- GETRequest(playlistURL)
+  size <- thisQ[["total"]]
+
+  df <- data.frame(name = character(size),
+                   album = character(size),
+                   artist = character(size),
+                   stringsAsFactors = FALSE)
+
+  while (TRUE) {
+    offs <- thisQ[["offset"]]
+    NEXT <- thisQ[["next"]]
+
+    for (i in 1:length(thisQ[["items"]])) {
+      song <- thisQ[["items"]][[i]]$track
+
+      entry <- c(song$name,
+                 song[["album"]]$name,
+                 song$artists[[1]]$name)
+
+      df[offs+i,] <- entry
+    }
+
+    if (is.null(NEXT)) {
+      break
+    }
+    thisQ <- GETRequest(NEXT)
+  }
+
+  return(df)
+}
+
+
+
+
+
+
 
