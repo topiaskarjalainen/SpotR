@@ -2,12 +2,12 @@
 % Please edit documentation in R/gets.R
 \name{buildPlaylistDF}
 \alias{buildPlaylistDF}
-\title{Bilds the dataframe.
- Takes the initial query as an argument}
+\title{Builds the dataframe.
+Takes the initial query as an argument}
 \usage{
 buildPlaylistDF(query)
 }
 \description{
-Bilds the dataframe.
- Takes the initial query as an argument
+Builds the dataframe.
+Takes the initial query as an argument
 }
