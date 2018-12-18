@@ -1,3 +1,7 @@
+#' TODO Change the authorization method to "Implicit Grant Flow".
+#' Current method is the "Client Credentials Flow"
+#' https://developer.spotify.com/documentation/general/guides/authorization-guide/
+
 #'Sets authentication parameters.
 #'
 #'Sets the authentication id and secret token. Does not return any value,
@@ -14,7 +18,8 @@ setAuthentication <- function(clientID, ClientSecret){
   Sys.setenv('secret' = ClientSecret)
 }
 
-#'Sends POST request to Spotify API and uses the authenthication ID and the Secret key
+#'Sends POST request to Spotify API and uses the authenthication ID and the
+#'Secret key
 #'provided with setAuthentication function
 #'@export
 

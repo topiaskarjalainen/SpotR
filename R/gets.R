@@ -72,7 +72,8 @@ getPlaylistTracks <- function(playlists) {
 
 #' Hidden function. Builds the data frames that contain the tracks.
 #' @param playlistURL An URL
-#' @value A dataframe that contains the tracks for the playlist specified by playlistURL
+#' @value A dataframe that contains the tracks for the playlist specified
+#' by playlistURL
 
 buildTrackDF <- function(playlistURL) {
   thisQ <- GETRequest(playlistURL)
@@ -81,6 +82,7 @@ buildTrackDF <- function(playlistURL) {
   df <- data.frame(name = character(size),
                    album = character(size),
                    artist = character(size),
+                   artist_id = character(size),
                    stringsAsFactors = FALSE)
 
   while (TRUE) {
@@ -92,7 +94,8 @@ buildTrackDF <- function(playlistURL) {
 
       entry <- c(song$name,
                  song[["album"]]$name,
-                 song$artists[[1]]$name)
+                 song$artists[[1]]$name,
+                 song$artists[[1]]$id)
 
       df[offs+i,] <- entry
     }

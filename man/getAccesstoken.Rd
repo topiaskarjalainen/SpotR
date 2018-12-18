@@ -2,12 +2,14 @@
 % Please edit documentation in R/acceess.R
 \name{getAccesstoken}
 \alias{getAccesstoken}
-\title{Sends POST request to Spotify API and uses the authenthication ID and the Secret key
+\title{Sends POST request to Spotify API and uses the authenthication ID and the
+Secret key
 provided with setAuthentication function}
 \usage{
 getAccesstoken()
 }
 \description{
-Sends POST request to Spotify API and uses the authenthication ID and the Secret key
+Sends POST request to Spotify API and uses the authenthication ID and the
+Secret key
 provided with setAuthentication function
 }
