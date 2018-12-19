@@ -2,6 +2,8 @@
 
 export(GETRequest)
 export(getAccesstoken)
+export(getArtist)
+export(getArtistTopTracks)
 export(getPlaylistTracks)
 export(getUserPlayslists)
 export(setAuthentication)

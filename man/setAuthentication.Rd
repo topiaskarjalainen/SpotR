@@ -2,7 +2,10 @@
 % Please edit documentation in R/acceess.R
 \name{setAuthentication}
 \alias{setAuthentication}
-\title{Sets authentication parameters.}
+\title{TODO Change the authorization method to "Implicit Grant Flow".
+Current method is the "Client Credentials Flow"
+https://developer.spotify.com/documentation/general/guides/authorization-guide/
+Sets authentication parameters.}
 \usage{
 setAuthentication(clientID, ClientSecret)
 }
