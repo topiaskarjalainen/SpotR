@@ -22,9 +22,9 @@ getArtistTopTracks <- function(artistID, country) {
                country,
                sep = "")
 
-  result <- GETRequest(url)
-  df <- buildToptrackDF(result)
-  return(df)
+  result <- GETRequest(url) %>%
+    buildToptrackDF(result)
+  return(result)
 }
 
 #' Builds a data frame.
