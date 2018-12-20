@@ -80,6 +80,7 @@ buildTrackDF <- function(playlistURL) {
   size <- thisQ[["total"]]
 
   df <- data.frame(name = character(size),
+                   popularity = integer(size),
                    album = character(size),
                    artist = character(size),
                    artist_id = character(size),
@@ -93,10 +94,11 @@ buildTrackDF <- function(playlistURL) {
       song <- thisQ[["items"]][[i]]$track
 
       entry <- c(song$name,
+                 as.integer(song$popularity),
                  song[["album"]]$name,
                  song$artists[[1]]$name,
                  song$artists[[1]]$id)
-
+      #' TODO ISSUE an error occurs here when tha name of the track contains brackets
       df[offs+i,] <- entry
     }
 
