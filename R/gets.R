@@ -11,7 +11,7 @@ getUserPlayslists <- function(userID) {
                  sep = "")
   message("Downloading...")
   df <- buildPlaylistDF(query)
-
+  df$n.songs <- as.numeric(df$n.songs)
   return(df)
 }
 
@@ -107,7 +107,7 @@ buildTrackDF <- function(playlistURL) {
     }
     thisQ <- GETRequest(NEXT)
   }
-
+  df$popularity <- as.numeric(df$popularity)
   return(df)
 }
 
