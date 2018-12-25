@@ -91,15 +91,20 @@ buildTrackDF <- function(playlistURL) {
     NEXT <- thisQ[["next"]]
 
     for (i in 1:length(thisQ[["items"]])) {
+
       song <- thisQ[["items"]][[i]]$track
 
-      entry <- c(song$name,
-                 as.integer(song$popularity),
-                 song[["album"]]$name,
-                 song$artists[[1]]$name,
-                 song$artists[[1]]$id)
-      #' TODO ISSUE an error occurs here when tha name of the track contains brackets
-      df[offs+i,] <- entry
+      if (song[["is_local"]]) {
+        next()
+      } else {
+
+        entry <- c(song$name,
+                   as.integer(song$popularity),
+                   song[["album"]]$name,
+                   song$artists[[1]]$name,
+                   song$artists[[1]]$id)
+        df[offs+i,] <- entry
+      }
     }
 
     if (is.null(NEXT)) {
@@ -110,10 +115,4 @@ buildTrackDF <- function(playlistURL) {
   df$popularity <- as.numeric(df$popularity)
   return(df)
 }
-
-
-
-
-
-
 
