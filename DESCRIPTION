@@ -3,9 +3,8 @@ Type: Package
 Title: Some functions to interact with spotify api
 Version: 0.1.0
 Author: Topias Karjalainen
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Maintainer: The package maintainer <topias.karjalainen@helsinki.fi>
+Description: Spotify API thing
 License: MIT
 Encoding: UTF-8
 LazyData: true
