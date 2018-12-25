@@ -95,7 +95,7 @@ buildTrackDF <- function(playlistURL) {
       song <- thisQ[["items"]][[i]]$track
 
       if (song[["is_local"]]) {
-        next()
+        next
       } else {
 
         entry <- c(song$name,
