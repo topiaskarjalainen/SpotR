@@ -8,3 +8,10 @@ GETRequest <- function(query) {
                       httr::add_headers(Authorization = header))
   return(httr::content(result))
 }
+
+#' Internal helper. A wrapper for getting a track.
+GETTrack <-  function(trackID) {
+  result <- GETRequest(paste("https://api.spotify.com/v1/tracks/",
+                             trackID, sep = ""))
+  return(result)
+}
