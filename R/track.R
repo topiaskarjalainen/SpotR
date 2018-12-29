@@ -22,6 +22,7 @@ getTrack <- function(trackID) {
 #' @export
 getAudioAnalysis <- function(trackID) {
   q <- paste("https://api.spotify.com/v1/audio-analysis/", trackID, sep = "")
+  message("Downloading...")
   res <- GETRequest(q)
   a <- audio(track = res[[2]],
              bars = res[[3]],

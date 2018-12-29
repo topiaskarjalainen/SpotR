@@ -3,10 +3,10 @@
 \docType{methods}
 \name{plot,audio-method}
 \alias{plot,audio-method}
-\title{Plottimng for audio.}
+\title{Plotting for audio.}
 \usage{
 \S4method{plot}{audio}(x)
 }
 \description{
-Plottimng for audio.
+Plotting for audio.
 }

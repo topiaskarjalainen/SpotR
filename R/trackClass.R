@@ -12,5 +12,5 @@ audio <- setClass("audio", slots =
 #'
 #' @export
 setMethod("plot", "audio", function(x) {
-  print("a")
+
 })
