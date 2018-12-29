@@ -9,6 +9,9 @@ getPlaylistTracks(playlists)
 \arguments{
 \item{playlists}{The data.frame returned by getUserPlaylists function}
 }
+\value{
+A list of data.frames that contain the tracks in the playlists
+}
 \description{
 Creates a list of data.frames that contain playlist tarcks.
 }

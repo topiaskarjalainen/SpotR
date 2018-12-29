@@ -9,6 +9,10 @@ getUserPlayslists(userID)
 \arguments{
 \item{userID}{The wanted user id as a string}
 }
+\value{
+Returns a dataframe that contains the names of the palylists, the total
+amount of songs on the list and the spotify URI of the playlist
+}
 \description{
 Retuns a data frame of the users playlists.
 }

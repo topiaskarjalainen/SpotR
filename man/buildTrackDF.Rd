@@ -9,6 +9,10 @@ buildTrackDF(playlistURL)
 \arguments{
 \item{playlistURL}{An URL}
 }
+\value{
+A dataframe that contains the tracks for the playlist specified
+by playlistURL
+}
 \description{
 Hidden function. Builds the data frames that contain the tracks.
 }

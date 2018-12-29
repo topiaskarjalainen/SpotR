@@ -7,6 +7,9 @@ Takes the initial query as an argument}
 \usage{
 buildPlaylistDF(query)
 }
+\arguments{
+\item{query}{URL}
+}
 \description{
 Builds the dataframe.
 Takes the initial query as an argument
