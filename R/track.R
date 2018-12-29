@@ -18,9 +18,16 @@ getTrack <- function(trackID) {
 #' Returns audio analysisi object.
 #'
 #' @param trackID Spotify ID
-#' @return A list
+#' @return An audio object
 #' @export
 getAudioAnalysis <- function(trackID) {
   q <- paste("https://api.spotify.com/v1/audio-analysis/", trackID, sep = "")
   res <- GETRequest(q)
+  a <- audio(track = res[[2]],
+             bars = res[[3]],
+             beats = res[[4]],
+             tatums = res[[5]],
+             sections = res[[6]],
+             segments = res[[7]])
+  return(a)
 }

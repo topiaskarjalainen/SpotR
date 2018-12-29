@@ -1,3 +1,15 @@
-#' Define a S4 class for track
+#' Define a S4 class for audio
+#' @export
+audio <- setClass("audio", slots = list(track = "list",
+                               bars = "list",
+                               beats = "list",
+                               tatums = "list",
+                               sections = "list",
+                               segments = "list"))
+
+#' Plotting for audio.
 #'
-setClass("track", slots = list())
+#' @export
+setMethod("plot", "audio", function(x) {
+  print("a")
+})
