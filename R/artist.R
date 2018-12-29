@@ -23,7 +23,7 @@ getArtistTopTracks <- function(artistID, country) {
                sep = "")
 
   result <- GETRequest(url) %>%
-    buildToptrackDF()
+    buildToptrackDF( <- <- <- <- <- )
   return(result)
 }
 

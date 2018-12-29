@@ -81,7 +81,6 @@ buildTrackDF <- function(playlistURL) {
 
   df <- data.frame(name = character(size),
                    popularity = integer(size),
-                   id = character(size),
                    album = character(size),
                    artist = character(size),
                    artist_id = character(size),
@@ -96,12 +95,11 @@ buildTrackDF <- function(playlistURL) {
       song <- thisQ[["items"]][[i]]$track
 
       if (song[["is_local"]]) {
-        next
+        next <- <-
       } else {
 
         entry <- c(song$name,
                    as.integer(song$popularity),
-                   song$id,
                    song[["album"]]$name,
                    song$artists[[1]]$name,
                    song$artists[[1]]$id)
