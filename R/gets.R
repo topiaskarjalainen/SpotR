@@ -1,9 +1,8 @@
 #'Retuns a data frame of the users playlists.
 #'@param userID The wanted user id as a string
-#'@value Returns a dataframe that contains the names of the palylists, the total
+#'@return Returns a dataframe that contains the names of the palylists, the total
 #'amount of songs on the list and the spotify URI of the playlist
 #'@export
-
 getUserPlayslists <- function(userID) {
   query <- paste("https://api.spotify.com/v1/users/",
                  userID,
@@ -17,8 +16,7 @@ getUserPlayslists <- function(userID) {
 
 #' Builds the dataframe.
 #' Takes the initial query as an argument
-#' @param query
-
+#' @param query URL
 buildPlaylistDF <- function(query) {
   thisQ <- GETRequest(query)
   offs <- thisQ[["offset"]]
@@ -54,7 +52,7 @@ buildPlaylistDF <- function(query) {
 
 #' Creates a list of data.frames that contain playlist tarcks.
 #' @param playlists The data.frame returned by getUserPlaylists function
-#' @value A list of data.frames that contain the tracks in the playlists
+#' @return A list of data.frames that contain the tracks in the playlists
 #' @export
 getPlaylistTracks <- function(playlists) {
   theList <- vector("list", length(playlists[, 1]))
@@ -72,9 +70,8 @@ getPlaylistTracks <- function(playlists) {
 
 #' Hidden function. Builds the data frames that contain the tracks.
 #' @param playlistURL An URL
-#' @value A dataframe that contains the tracks for the playlist specified
+#' @return A dataframe that contains the tracks for the playlist specified
 #' by playlistURL
-
 buildTrackDF <- function(playlistURL) {
   thisQ <- GETRequest(playlistURL)
   size <- thisQ[["total"]]
