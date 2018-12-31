@@ -39,9 +39,7 @@ buildPlaylistDF <- function(query) {
       df[offs+i,] <- line
     }
 
-    if (is.null(NEXT)) {
-      break
-    }
+    if (is.null(NEXT)) break;
 
     thisQ <- GETRequest(NEXT)
   }
@@ -104,9 +102,8 @@ buildTrackDF <- function(playlistURL) {
       }
     }
 
-    if (is.null(NEXT)) {
-      break
-    }
+    if (is.null(NEXT)) break;
+
     thisQ <- GETRequest(NEXT)
   }
   df$popularity <- as.numeric(df$popularity)

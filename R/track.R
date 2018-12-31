@@ -22,7 +22,7 @@ getTrack <- function(trackID) {
 #' @export
 getAudioAnalysis <- function(trackID) {
   q <- paste("https://api.spotify.com/v1/audio-analysis/", trackID, sep = "")
-  message("Downloading...")
+
   res <- GETRequest(q)
   a <- audio(track = res[[2]],
              bars = res[[3]],
@@ -32,3 +32,57 @@ getAudioAnalysis <- function(trackID) {
              segments = res[[7]])
   return(a)
 }
+
+
+#' Get audio features for track.
+#' @param IDs a vector of IDs
+#' @export
+getAudioFeatures <- function(IDs) {
+  q <- paste("https://api.spotify.com/v1/audio-features/?ids=",
+             paste(IDs, collapse = ","),
+             sep = "")
+
+  res <- GETRequest(q)
+
+  tracks <- list()
+
+  for (i in 1:length(res[["audio_features"]])) {
+    fi <- res$audio_features[[i]] %>% unlist()
+
+    f <- audioFeatures(dancebility = as.numeric(fi[1]),
+                       energy = as.numeric(fi[2]),
+                       key = as.integer(fi[3]),
+                       loudness = as.numeric(fi[4]),
+                       mode = as.integer(fi[5]),
+                       speechiness = as.numeric(fi[6]),
+                       acousticness = as.numeric(fi[7]),
+                       instrumentalness = as.integer(fi[8]),
+                       liveness = as.numeric(fi[9]),
+                       valence = as.numeric(fi[10]),
+                       tempo = as.numeric(fi[11]),
+                       type = fi[12],
+                       id = fi[13],
+                       uri = fi[14],
+                       track_href = fi[15],
+                       analysis_url = fi[16],
+                       duration_ms = as.integer(fi[17]),
+                       time_signature = as.integer(fi[18]))
+    tracks[i] <- f
+  }
+
+  return(tracks)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
