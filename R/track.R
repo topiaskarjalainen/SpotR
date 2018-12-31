@@ -42,7 +42,7 @@ getAudioFeatures <- function(IDs) {
              paste(IDs, collapse = ","),
              sep = "")
 
-  res <- GETRequest(q)$
+  res <- GETRequest(q)
 
   tracks <- list()
 
