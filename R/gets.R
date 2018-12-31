@@ -8,7 +8,7 @@ getUserPlayslists <- function(userID) {
                  userID,
                  "/playlists",
                  sep = "")
-  message("Downloading...")
+
   df <- buildPlaylistDF(query)
   df$n.songs <- as.numeric(df$n.songs)
   return(df)
@@ -79,6 +79,7 @@ buildTrackDF <- function(playlistURL) {
                    album = character(size),
                    artist = character(size),
                    artist_id = character(size),
+                   song_id = character(size),
                    stringsAsFactors = FALSE)
 
   while (TRUE) {
@@ -97,7 +98,8 @@ buildTrackDF <- function(playlistURL) {
                    as.integer(song$popularity),
                    song[["album"]]$name,
                    song$artists[[1]]$name,
-                   song$artists[[1]]$id)
+                   song$artists[[1]]$id,
+                   song$id)
         df[offs+i,] <- entry
       }
     }
