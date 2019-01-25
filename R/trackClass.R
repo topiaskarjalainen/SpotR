@@ -15,7 +15,7 @@ setGeneric("plot")
 #'
 #' @param timeRange A vector of length 2 that contains the start and finnish of
 #' range you desire to explore.
-#' @param Whether to show segments of not, since they are numerous so they might
+#' @param shoSegments Whether to show segments of not, since they are numerous so they might
 #' get on the way of seeing other stuff.
 #' @export
 plot.audio <- function(x, timeRange = NULL, showSegments = FALSE) {
