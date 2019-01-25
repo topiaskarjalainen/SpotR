@@ -138,3 +138,8 @@ audioFeatures <- setClass("audioFeatures", slots =
                        ))
 
 
+
+#' TODO: plotting method for audio features. Requires new getter that constructs
+#' a list of lists of audio features from playlists that we want to explore.
+#' Polots then the selected playlists on 2d grapgh that has x and y axes that
+#' represent two of the features.
