@@ -12,4 +12,6 @@ RoxygenNote: 6.1.1
 Depends:
     httr,
     dplyr,
-    ggplot2
+    ggplot2,
+    graphics,
+    purrr

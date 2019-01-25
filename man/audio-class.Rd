@@ -3,7 +3,7 @@
 \docType{class}
 \name{audio-class}
 \alias{audio-class}
-\alias{audio}
+\alias{Audio}
 \title{Define a S4 class for audio}
 \description{
 Define a S4 class for audio
