@@ -2,7 +2,7 @@
 % Please edit documentation in R/trackClass.R
 \name{plot.audio}
 \alias{plot.audio}
-\title{wfae}
+\title{Plots audio object.}
 \usage{
 plot.audio(x, timeRange = NULL, showSegments = FALSE)
 }
@@ -14,5 +14,5 @@ range you desire to explore.}
 get on the way of seeing other stuff.}
 }
 \description{
-wfae
+Plots audio object.
 }

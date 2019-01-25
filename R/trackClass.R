@@ -11,7 +11,8 @@ Audio <- setClass("audio", slots =
 #' @importFrom graphics plot
 setGeneric("plot")
 
-#' wfae
+#' Plots audio object.
+#'
 #' @param timeRange A vector of length 2 that contains the start and finnish of
 #' range you desire to explore.
 #' @param Whether to show segments of not, since they are numerous so they might
