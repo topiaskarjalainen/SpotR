@@ -57,7 +57,7 @@ getPlaylistTracks <- function(playlists) {
   message("Downloading...")
   for (i in 1:length(theList)) {
     traURL <- playlists$tracks[i]
-    theList[[i]] <- buildTrackDF(traURL)
+    theList[[i]] <- buildTrackDF(traURL) %>% na.omit()
   }
 
   names(theList) <- playlists$name
@@ -91,7 +91,8 @@ buildTrackDF <- function(playlistURL) {
       song <- thisQ[["items"]][[i]]$track
 
       if (song[["is_local"]]) {
-        next
+        entry <- rep(NA, 6)
+        df[offs+i,] <- entry
       } else {
 
         entry <- c(song$name,

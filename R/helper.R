@@ -7,6 +7,7 @@ GETRequest <- function(query) {
   message("Downloading...")
   result <- httr::GET(query,
                       httr::add_headers(Authorization = header))
+
   message("Done!")
   return(httr::content(result))
 }

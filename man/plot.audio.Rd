@@ -10,7 +10,7 @@ plot.audio(x, timeRange = NULL, showSegments = FALSE)
 \item{timeRange}{A vector of length 2 that contains the start and finnish of
 range you desire to explore.}
 
-\item{shoSegments}{Whether to show segments of not, since they are numerous so they might
+\item{showSegments}{Whether to show segments of not, since they are numerous so they might
 get on the way of seeing other stuff.}
 }
 \description{

@@ -34,9 +34,14 @@ getAudioAnalysis <- function(trackID) {
 
 
 #' Get audio features for track.
-#' @param IDs a vector of IDs
+#' @param IDs a vector of IDs. Maximum lengths is 100 IDs.
 #' @export
 getAudioFeatures <- function(IDs) {
+
+  if (length(IDs) > 100) {
+    stop("Too many entries")
+  }
+
   q <- paste("https://api.spotify.com/v1/audio-features/?ids=",
              paste(IDs, collapse = ","),
              sep = "")

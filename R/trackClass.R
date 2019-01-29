@@ -15,12 +15,16 @@ setGeneric("plot")
 #'
 #' @param timeRange A vector of length 2 that contains the start and finnish of
 #' range you desire to explore.
-#' @param shoSegments Whether to show segments of not, since they are numerous so they might
+#' @param showSegments Whether to show segments of not, since they are numerous so they might
 #' get on the way of seeing other stuff.
 #' @export
 plot.audio <- function(x, timeRange = NULL, showSegments = FALSE) {
   g <- ggplot() +
-    ylim(0, 3)
+    ylim(0, 3) +
+    theme_minimal() +
+    ylab("") +
+    xlab("Time")
+
   g <- plotBars(x, g)
   g <- plotSections(x, g)
   g <- plotTatums(x, g)
@@ -32,17 +36,17 @@ plot.audio <- function(x, timeRange = NULL, showSegments = FALSE) {
 
   if (is.null(timeRange)) {
     show(g)
+  } else {
+    g <- g +
+      xlim(timeRange[1], timeRange[2])
+
+    show(g)
   }
-
-  g <- g +
-    xlim(timeRange[1], timeRange[2])
-
-  show(g)
 }
 
 #' Plots bars.
 #'
-#' @export
+#'
 plotBars <- function(audio, g) {
   bars <- map_dbl(audio@bars, function(x){
     return(x[[ "start" ]])
@@ -54,7 +58,7 @@ plotBars <- function(audio, g) {
 
 #' Plots sections.
 #'
-#' @export
+#'
 plotSections <- function(audio, g) {
   sections <- map_dbl(audio@sections, function(x) {
     return(x[[ "start" ]])
@@ -68,7 +72,7 @@ plotSections <- function(audio, g) {
 
 #' Plot tatums.
 #'
-#' @export
+#'
 plotTatums <- function(audio, g) {
   tatums <- map_dbl(audio@tatums, function(x) {
     return(x[[ "start" ]])
@@ -83,7 +87,7 @@ plotTatums <- function(audio, g) {
 
 #' Plots segments.
 #'
-#' @export
+#'
 plotSegments <- function(audio, g) {
   seg <- map_dbl(audio@segments, function(x) {
     return(x[[ "start" ]])
@@ -97,7 +101,7 @@ plotSegments <- function(audio, g) {
 
 #' Plot beat.
 #'
-#' @export
+#'
 plotBeat <- function(audio, g) {
   beat <- map_dbl(audio@beats, function(x) {
     return(x[[ "start" ]])
@@ -143,3 +147,38 @@ audioFeatures <- setClass("audioFeatures", slots =
 #' a list of lists of audio features from playlists that we want to explore.
 #' Polots then the selected playlists on 2d grapgh that has x and y axes that
 #' represent two of the features.
+
+#' Plot audio features.
+#'
+#' Plots one feature against other given a list of audio feature objects.
+#'
+#' @param x Name of the feature to be plotted on x-axis.
+#' @param y Naem of the feature to be plotted on y-axis.
+#' @param tracks A list of audioFeatures objects.
+#'
+#' @export
+featurePlot <- function(x, y, trakcs) {
+  df <- mapTo(x, y, trakcs)
+
+  g <- ggplot(df, aes(x, y)) +
+    geom_point() +
+    theme_minimal() +
+    ylab(y) +
+    xlab(x)
+
+  return(g)
+}
+
+
+#' Helper to map the track list to numerical vectors
+mapTo <- function(x, y, tracks) {
+  x_dat <- map_dbl(tracks, function(track) return(slot(track, x)))
+  y_dat <- map_dbl(tracks, function(track) return(slot(track, y)))
+
+  return(data.frame(x = x_dat, y = y_dat))
+}
+
+
+
+
+

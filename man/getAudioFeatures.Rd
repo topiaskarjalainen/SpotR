@@ -7,7 +7,7 @@
 getAudioFeatures(IDs)
 }
 \arguments{
-\item{IDs}{a vector of IDs}
+\item{IDs}{a vector of IDs. Maximum lengths is 100 IDs.}
 }
 \description{
 Get audio features for track.
