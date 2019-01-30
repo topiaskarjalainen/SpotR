@@ -203,7 +203,7 @@ listOfPlaylists <- function(x, y, tracks) {
 }
 
 listOfAudioFeaturse <- function(x, y, tracks) {
-  df <- mapToFeatureDF(x, y, trakcs)
+  df <- mapToFeatureDF(x, y, tracks)
 
   g <- ggplot(df, aes(x, y)) +
     geom_point() +
@@ -217,7 +217,11 @@ listOfAudioFeaturse <- function(x, y, tracks) {
 
 #' Helper to map the track list to numerical vectors
 mapToFeatureDF <- function(x, y, tracks) {
-  tracks <- tracks[[1]]
+
+  if (!is.audioFeatures(tracks[[1]])) {
+    tracks <- tracks[[1]]
+  }
+
   x_dat <- map_dbl(tracks, function(track) return(slot(track, x)))
   y_dat <- map_dbl(tracks, function(track) return(slot(track, y)))
 
