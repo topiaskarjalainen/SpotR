@@ -2,10 +2,8 @@
 % Please edit documentation in R/trackClass.R
 \name{featurePlot}
 \alias{featurePlot}
-\title{TODO: plotting method for audio features. Requires new getter that constructs
-a list of lists of audio features from playlists that we want to explore.
-Polots then the selected playlists on 2d grapgh that has x and y axes that
-represent two of the features.
+\title{TODO: Add legends to the  plots made with this function.
+TODO: A function that creates ready lists of playlists to be plotted.
 Plot audio features.}
 \usage{
 featurePlot(x, y, trakcs)
@@ -15,7 +13,8 @@ featurePlot(x, y, trakcs)
 
 \item{y}{Naem of the feature to be plotted on y-axis.}
 
-\item{tracks}{A list of audioFeatures objects.}
+\item{tracks}{A list of audioFeatures objects, or a list of lists(different
+playlists perhaps).}
 }
 \description{
 Plots one feature against other given a list of audio feature objects.

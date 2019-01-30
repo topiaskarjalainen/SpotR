@@ -2,7 +2,8 @@
 % Please edit documentation in R/track.R
 \name{getAudioFeatures}
 \alias{getAudioFeatures}
-\title{Get audio features for track.}
+\title{TODO: Change this so that there is no 100 song limit.
+Get audio features for track.}
 \usage{
 getAudioFeatures(IDs)
 }
@@ -10,5 +11,6 @@ getAudioFeatures(IDs)
 \item{IDs}{a vector of IDs. Maximum lengths is 100 IDs.}
 }
 \description{
+TODO: Change this so that there is no 100 song limit.
 Get audio features for track.
 }

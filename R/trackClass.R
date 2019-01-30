@@ -8,6 +8,12 @@ Audio <- setClass("audio", slots =
                          sections = "list",
                          segments = "list"))
 
+#' Check if object is of type audio
+#'
+#' @export
+is.audio <- function(x) inherits(x, "audio")
+
+
 #' @importFrom graphics plot
 setGeneric("plot")
 
@@ -141,12 +147,15 @@ audioFeatures <- setClass("audioFeatures", slots =
                          time_signature = "integer"
                        ))
 
+#' Check if object is audioFeature
+#'
+#' @export
+is.audioFeatures <- function(x) inherits(x, "audioFeatures")
 
 
-#' TODO: plotting method for audio features. Requires new getter that constructs
-#' a list of lists of audio features from playlists that we want to explore.
-#' Polots then the selected playlists on 2d grapgh that has x and y axes that
-#' represent two of the features.
+
+#' TODO: Add legends to the  plots made with this function.
+#' TODO: A function that creates ready lists of playlists to be plotted.
 
 #' Plot audio features.
 #'
@@ -154,11 +163,47 @@ audioFeatures <- setClass("audioFeatures", slots =
 #'
 #' @param x Name of the feature to be plotted on x-axis.
 #' @param y Naem of the feature to be plotted on y-axis.
-#' @param tracks A list of audioFeatures objects.
+#' @param tracks A list of audioFeatures objects, or a list of lists(different
+#' playlists perhaps).
 #'
 #' @export
 featurePlot <- function(x, y, trakcs) {
-  df <- mapTo(x, y, trakcs)
+
+  if (is.audioFeatures(trakcs[[1]])) {
+    g <- listOfAudioFeaturse(x, y, trakcs)
+  } else if (is.list(trakcs[[1]])) {
+    g <- listOfPlaylists(x, y, trakcs)
+  } else {
+    stop("Invalid input type on tracks.")
+  }
+
+  show(g)
+}
+
+
+listOfPlaylists <- function(x, y, tracks) {
+  #nam <- names(tracks)
+
+  g <- ggplot() +
+    theme_minimal() +
+    ylab(y) +
+    xlab(x)
+
+  colType <- 1:length(tracks)
+
+  for (i in 1:length(tracks)) {
+    df <- mapToFeatureDF(x, y, tracks[i])
+    g <- g +
+      geom_point(data = df,
+                 aes(x, y),
+                 col = colType[i])
+  }
+
+  return(g)
+}
+
+listOfAudioFeaturse <- function(x, y, tracks) {
+  df <- mapToFeatureDF(x, y, trakcs)
 
   g <- ggplot(df, aes(x, y)) +
     geom_point() +
@@ -171,7 +216,8 @@ featurePlot <- function(x, y, trakcs) {
 
 
 #' Helper to map the track list to numerical vectors
-mapTo <- function(x, y, tracks) {
+mapToFeatureDF <- function(x, y, tracks) {
+  tracks <- tracks[[1]]
   x_dat <- map_dbl(tracks, function(track) return(slot(track, x)))
   y_dat <- map_dbl(tracks, function(track) return(slot(track, y)))
 

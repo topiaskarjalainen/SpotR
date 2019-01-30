@@ -33,6 +33,8 @@ getAudioAnalysis <- function(trackID) {
 }
 
 
+#' TODO: Change this so that there is no 100 song limit.
+
 #' Get audio features for track.
 #' @param IDs a vector of IDs. Maximum lengths is 100 IDs.
 #' @export
