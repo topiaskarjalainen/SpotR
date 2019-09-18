@@ -61,7 +61,7 @@ getPlaylistTracks <- function(playlists) {
   }
 
   names(theList) <- playlists$name
-
+  message("Done!")
   return(theList)
 }
 
@@ -80,6 +80,7 @@ buildTrackDF <- function(playlistURL) {
                    artist = character(size),
                    artist_id = character(size),
                    song_id = character(size),
+                   song_uri = character(size),
                    stringsAsFactors = FALSE)
 
   while (TRUE) {
@@ -91,7 +92,7 @@ buildTrackDF <- function(playlistURL) {
       song <- thisQ[["items"]][[i]]$track
 
       if (song[["is_local"]]) {
-        entry <- rep(NA, 6)
+        entry <- rep(NA, 7)
         df[offs+i,] <- entry
       } else {
 
@@ -100,7 +101,8 @@ buildTrackDF <- function(playlistURL) {
                    song[["album"]]$name,
                    song$artists[[1]]$name,
                    song$artists[[1]]$id,
-                   song$id)
+                   song$id,
+                   song$uri)
         df[offs+i,] <- entry
       }
     }

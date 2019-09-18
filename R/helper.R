@@ -4,11 +4,11 @@
 
 GETRequest <- function(query) {
   header <- paste("Bearer ", Sys.getenv("token"), sep = "")
-  message("Downloading...")
+  #message("Downloading...")
   result <- httr::GET(query,
                       httr::add_headers(Authorization = header))
 
-  message("Done!")
+  #message("Done!")
   return(httr::content(result))
 }
 
